@@ -26,6 +26,7 @@ const SiteWrapper = styled.div`
   color: white;
   a {
     text-decoration: none;
+    color: #ffe230;
   }
   a:visited,
   a:hover,
