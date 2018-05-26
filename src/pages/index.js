@@ -2,6 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import ReactSwipe from 'react-swipe'
 import Link from 'gatsby-link'
+import { withPrefix } from 'gatsby-link'
+
+import appStoreLogo from './../images/badge-appstore.png'
+import playStoreLogo from './../images/badge-playstore.png'
 
 const Systems = styled.h2`
   color: white;
@@ -52,12 +56,12 @@ const IndexPage = ({ data }) => (
       <ul>
         <li>
           <a href={data.home.appStoreUrl} target="_blank">
-            <img className="apple" src="/static/badge-appstore.png" />
+            <img className="apple" src={appStoreLogo} />
           </a>
         </li>
         <li>
           <a href={data.home.playStoreUrl} target="_blank">
-            <img className="android" src="/static/badge-playstore.png" />
+            <img className="android" src={playStoreLogo} />
           </a>
         </li>
       </ul>
