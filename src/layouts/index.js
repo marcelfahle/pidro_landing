@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { injectGlobal } from 'styled-components'
 import reset from 'styled-reset'
 import Helmet from 'react-helmet'
+import { HelmetDatoCms } from 'gatsby-source-datocms'
 
 import Header from '../components/header'
 
@@ -58,6 +59,7 @@ const Layout = ({ children, data }) => (
         },
       ]}
     />
+    <HelmetDatoCms favicon={data.datoCmsSite.faviconMetaTags} />
     <Header siteTitle={data.site.siteMetadata.title} />
     <Content>{children()}</Content>
   </SiteWrapper>
@@ -74,6 +76,20 @@ export const query = graphql`
     site {
       siteMetadata {
         title
+      }
+    }
+    datoCmsSite {
+      faviconMetaTags {
+        ...GatsbyDatoCmsFaviconMetaTags
+      }
+      globalSeo {
+        fallbackSeo {
+          title
+          description
+          image {
+            url
+          }
+        }
       }
     }
   }

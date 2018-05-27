@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import ReactSwipe from 'react-swipe'
+import { HelmetDatoCms } from 'gatsby-source-datocms'
 import Link from 'gatsby-link'
 import { withPrefix } from 'gatsby-link'
 import {
@@ -100,6 +101,7 @@ const Copyright = styled.div`
 
 const IndexPage = ({ data }) => (
   <div>
+    <HelmetDatoCms seo={data.home.seoMetaTags} />
     <Systems>
       Pidro, the Multiplayer Card Game<br />
       for{' '}
@@ -220,6 +222,9 @@ export const query = graphql`
       socialShareUrl
       screenshots {
         url
+      }
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
       }
     }
     social: datoCmsSocialMediaSetting {

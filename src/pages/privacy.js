@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { HelmetDatoCms } from 'gatsby-source-datocms'
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -41,6 +42,7 @@ const Content = styled.div`
 
 const PrivacyPage = ({ data }) => (
   <Wrapper>
+    <HelmetDatoCms seo={data.privacy.seoMetaTags} />
     <h2>{data.privacy.title}</h2>
     <Content
       dangerouslySetInnerHTML={{
@@ -60,6 +62,9 @@ export const query = graphql`
         childMarkdownRemark {
           html
         }
+      }
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
       }
     }
   }
