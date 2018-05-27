@@ -4,8 +4,8 @@ Not much to see here, really.
 
 Very quickly cooked up using amazing technologies like:
 
-https://www.gatsbyjs.org/
-https://www.datocms.com/
-http://netlify.com/
-https://github.com/nygardk/react-share
-https://github.com/voronianski/react-swipe
+https://www.gatsbyjs.org/ <br>
+https://www.datocms.com/ <br>
+http://netlify.com/ <br>
+https://github.com/nygardk/react-share <br>
+https://github.com/voronianski/react-swipe <br>
