@@ -18,6 +18,7 @@ import {
 
 import appStoreLogo from './../images/badge-appstore.png'
 import playStoreLogo from './../images/badge-playstore.png'
+import phone from './../images/phone-mock.png'
 
 const Systems = styled.h2`
   color: white;
@@ -49,7 +50,20 @@ const Swiper = styled.div`
   border: 2px solid #09afe6;
   border-radius: 6px;
   overflow: hidden;
-  margin-bottom: 30px;
+  margin: 0 auto 30px auto;
+
+  @media (min-width: 720px) {
+    border: none;
+    background: transparent url(${phone}) no-repeat;
+    background-size: contain;
+    width: 680px;
+    height: 340px;
+    > div {
+      width: 464px;
+      height: 290px;
+      margin: 24px auto 0 auto;
+    }
+  }
 `
 
 const SocialButtons = styled.div`
@@ -80,6 +94,8 @@ const Copyright = styled.div`
   border-top: 1px solid #09afe6;
   padding-top: 20px;
   text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
 `
 
 const IndexPage = ({ data }) => (

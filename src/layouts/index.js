@@ -14,7 +14,6 @@ const baseStyles = injectGlobal`
 `
 const SiteWrapper = styled.div`
   min-height: 100%;
-  max-width: 1200px;
   padding-bottom: 40px;
   background: rgb(13, 48, 75);
   background: radial-gradient(
@@ -37,8 +36,10 @@ const SiteWrapper = styled.div`
 `
 
 const Content = styled.div`
-  margin-left: 1em;
-  margin-right: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  max-width: 1200px;
+  margin: 0 auto;
 `
 
 const Layout = ({ children, data }) => (
