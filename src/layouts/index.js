@@ -13,8 +13,9 @@ const baseStyles = injectGlobal`
 	}
 `
 const SiteWrapper = styled.div`
-  height: 100%;
+  min-height: 100%;
   max-width: 1200px;
+  padding-bottom: 40px;
   background: rgb(13, 48, 75);
   background: radial-gradient(
     circle,
