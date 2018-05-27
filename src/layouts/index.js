@@ -47,8 +47,15 @@ const Layout = ({ children, data }) => (
     <Helmet
       title={data.site.siteMetadata.title}
       meta={[
-        { name: 'description', content: 'Sample' },
-        { name: 'keywords', content: 'sample, something' },
+        {
+          name: 'description',
+          content: 'The Multiplayer Card Game from Finland.',
+        },
+        {
+          name: 'keywords',
+          content:
+            'pidro, pedro, card game, multiplayer, iOS, android, game, games, cards, casino, fun',
+        },
       ]}
     />
     <Header siteTitle={data.site.siteMetadata.title} />

@@ -3,7 +3,7 @@ require('dotenv').config({
 })
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'Pidro, the Multiplayer Card Game for iPhone, iPad and Android',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
