@@ -22,5 +22,14 @@ module.exports = {
         fonts: [`Sanchez`],
       },
     },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-119852458-1',
+        head: false,
+        anonymize: true,
+        respectDNT: true,
+      },
+    },
   ],
 }
