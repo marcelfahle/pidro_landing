@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import ReactSwipe from 'react-swipe'
 import { HelmetDatoCms } from 'gatsby-source-datocms'
-import Link from 'gatsby-link'
-import { withPrefix } from 'gatsby-link'
+import { StaticQuery, graphql } from 'gatsby'
+import Link, { withPrefix } from 'gatsby-link'
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -17,6 +17,7 @@ import {
   EmailIcon,
 } from 'react-share'
 
+import Layout from '../components/layout'
 import appStoreLogo from './../images/badge-appstore.png'
 import playStoreLogo from './../images/badge-playstore.png'
 import phone from './../images/phone-mock.png'
@@ -28,8 +29,8 @@ const Systems = styled.h2`
 `
 
 const Badges = styled.div`
-	display: table;
-	margin: 0 auto 30px auto;
+  display: table;
+  margin: 0 auto 30px auto;
   ul {
     list-style: none;
     margin: 0;
@@ -39,10 +40,9 @@ const Badges = styled.div`
       width: 50%;
       max-width: 130px;
       img {
-				max-width 100%;
+        max-width: 100%;
         max-height: 60px;
       }
-
     }
   }
 `
@@ -99,145 +99,151 @@ const Copyright = styled.div`
   margin: 0 auto;
 `
 
-const IndexPage = ({ data }) => (
-  <div>
-    <HelmetDatoCms seo={data.home.seoMetaTags} />
-    <Systems>
-      Pidro, the Multiplayer Card Game<br />
-      for{' '}
-      <a href={data.home.appStoreUrl} target="_blank">
-        iPhone
-      </a>,{' '}
-      <a href={data.home.appStoreUrl} target="_blank">
-        iPad{' '}
-      </a>
-      and{' '}
-      <a href={data.home.playStoreUrl} target="_blank">
-        Android
-      </a>.
-    </Systems>
-    <Badges>
-      <ul>
-        <li>
+const IndexPage = () => (
+  <StaticQuery
+    query={graphql`
+      query HomeQuery {
+        home: datoCmsHome {
+          intro
+          appStoreUrl
+          playStoreUrl
+          socialShareUrl
+          screenshots {
+            url
+          }
+          seoMetaTags {
+            ...GatsbyDatoCmsSeoMetaTags
+          }
+        }
+        social: datoCmsSocialMediaSetting {
+          sharingUrl
+          facebookShareTitle
+          facebookShareHashtag
+          twitterTitle
+          twitterVia
+          linkedinTitle
+          linkedinDescription
+          whatsappTitle
+          eMailSubject
+          eMailBody
+        }
+      }
+    `}
+    render={data => (
+      <Layout>
+        <HelmetDatoCms seo={data.home.seoMetaTags} />
+        <Systems>
+          Pidro, the Multiplayer Card Game
+          <br />
+          for{' '}
           <a href={data.home.appStoreUrl} target="_blank">
-            <img className="apple" src={appStoreLogo} />
+            iPhone
           </a>
-        </li>
-        <li>
-          <a href={data.home.playStoreUrl} target="_blank">
-            <img className="android" src={playStoreLogo} />
-          </a>
-        </li>
-      </ul>
-    </Badges>
-    <Swiper>
-      <ReactSwipe
-        className="carousel"
-        swipeOptions={{ auto: 3000, continuous: true }}
-      >
-        {data &&
-          data.home.screenshots &&
-          data.home.screenshots.map(s => <img key={s.url} src={s.url} />)}
-      </ReactSwipe>
-    </Swiper>
-    <SocialButtons>
-      <p>Let's get Social:</p>
-      <ButtonList>
-        <FacebookShareButton
-          quote={data.social.facebookShareTitle}
-          hashtag={data.social.facebookShareHashtag}
-          url={data.social.sharingUrl}
-        >
-          <FacebookIcon size={32} round={true} />
-        </FacebookShareButton>
-        <TwitterShareButton
-          url={data.social.sharingUrl}
-          title={data.social.twitterTitle}
-          via={data.social.twitterVia}
-        >
-          <TwitterIcon size={32} round={true} />
-        </TwitterShareButton>
-        <WhatsappShareButton
-          url={data.social.sharingUrl}
-          title={data.social.whatsappTitle}
-        >
-          <WhatsappIcon size={32} round={true} />
-        </WhatsappShareButton>
-        <LinkedinShareButton
-          url={data.social.sharingUrl}
-          title={data.social.linkedinTitle}
-          description={data.social.linkedinDescription}
-        >
-          <LinkedinIcon size={32} round={true} />
-        </LinkedinShareButton>
-        <EmailShareButton
-          url={data.social.sharingUrl}
-          subject={data.social.eMailSubject}
-          body={data.social.eMailBody}
-        >
-          <EmailIcon size={32} round={true} />
-        </EmailShareButton>
-      </ButtonList>
-    </SocialButtons>
-
-    <Badges>
-      <ul>
-        <li>
+          ,{' '}
           <a href={data.home.appStoreUrl} target="_blank">
-            <img className="apple" src={appStoreLogo} />
+            iPad{' '}
           </a>
-        </li>
-        <li>
+          and{' '}
           <a href={data.home.playStoreUrl} target="_blank">
-            <img className="android" src={playStoreLogo} />
+            Android
           </a>
-        </li>
-      </ul>
-    </Badges>
+          .
+        </Systems>
+        <Badges>
+          <ul>
+            <li>
+              <a href={data.home.appStoreUrl} target="_blank">
+                <img className="apple" src={appStoreLogo} />
+              </a>
+            </li>
+            <li>
+              <a href={data.home.playStoreUrl} target="_blank">
+                <img className="android" src={playStoreLogo} />
+              </a>
+            </li>
+          </ul>
+        </Badges>
+        <Swiper>
+          <ReactSwipe
+            className="carousel"
+            swipeOptions={{ auto: 3000, continuous: true }}
+          >
+            {data &&
+              data.home.screenshots &&
+              data.home.screenshots.map(s => <img key={s.url} src={s.url} />)}
+          </ReactSwipe>
+        </Swiper>
+        <SocialButtons>
+          <p>Let's get Social:</p>
+          <ButtonList>
+            <FacebookShareButton
+              quote={data.social.facebookShareTitle}
+              hashtag={data.social.facebookShareHashtag}
+              url={data.social.sharingUrl}
+            >
+              <FacebookIcon size={32} round={true} />
+            </FacebookShareButton>
+            <TwitterShareButton
+              url={data.social.sharingUrl}
+              title={data.social.twitterTitle}
+              via={data.social.twitterVia}
+            >
+              <TwitterIcon size={32} round={true} />
+            </TwitterShareButton>
+            <WhatsappShareButton
+              url={data.social.sharingUrl}
+              title={data.social.whatsappTitle}
+            >
+              <WhatsappIcon size={32} round={true} />
+            </WhatsappShareButton>
+            <LinkedinShareButton
+              url={data.social.sharingUrl}
+              title={data.social.linkedinTitle}
+              description={data.social.linkedinDescription}
+            >
+              <LinkedinIcon size={32} round={true} />
+            </LinkedinShareButton>
+            <EmailShareButton
+              url={data.social.sharingUrl}
+              subject={data.social.eMailSubject}
+              body={data.social.eMailBody}
+            >
+              <EmailIcon size={32} round={true} />
+            </EmailShareButton>
+          </ButtonList>
+        </SocialButtons>
 
-    <Support>
-      <p>
-        Technical Problems? We're here to help! <br />
-        <a href="mailto:support@pidro.net">Click here</a>
-      </p>
-    </Support>
+        <Badges>
+          <ul>
+            <li>
+              <a href={data.home.appStoreUrl} target="_blank">
+                <img className="apple" src={appStoreLogo} />
+              </a>
+            </li>
+            <li>
+              <a href={data.home.playStoreUrl} target="_blank">
+                <img className="android" src={playStoreLogo} />
+              </a>
+            </li>
+          </ul>
+        </Badges>
 
-    <Copyright>
-      <p>Oneapps &copy; 2016-2018</p>
-      <p>
-        <a href="/privacy">Privacy Policy</a>
-      </p>
-    </Copyright>
-  </div>
+        <Support>
+          <p>
+            Technical Problems? We're here to help! <br />
+            <a href="mailto:support@pidro.net">Click here</a>
+          </p>
+        </Support>
+
+        <Copyright>
+          <p>Oneapps &copy; 2016-2018</p>
+          <p>
+            <a href="/privacy">Privacy Policy</a>
+          </p>
+        </Copyright>
+      </Layout>
+    )}
+  />
 )
 
 export default IndexPage
-
-export const query = graphql`
-  query HomeQuery {
-    home: datoCmsHome {
-      intro
-      appStoreUrl
-      playStoreUrl
-      socialShareUrl
-      screenshots {
-        url
-      }
-      seoMetaTags {
-        ...GatsbyDatoCmsSeoMetaTags
-      }
-    }
-    social: datoCmsSocialMediaSetting {
-      sharingUrl
-      facebookShareTitle
-      facebookShareHashtag
-      twitterTitle
-      twitterVia
-      linkedinTitle
-      linkedinDescription
-      whatsappTitle
-      eMailSubject
-      eMailBody
-    }
-  }
-`

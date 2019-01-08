@@ -45,8 +45,8 @@ const Content = styled.div`
 const PrivacyPage = () => (
   <StaticQuery
     query={graphql`
-      query PrivacyQuery {
-        privacy: datoCmsPrivacyPolicy {
+      query TermsQuery {
+        terms: datoCmsTermsOfUse {
           title
           contentNode {
             childMarkdownRemark {
@@ -62,11 +62,11 @@ const PrivacyPage = () => (
     render={data => (
       <Layout>
         <Wrapper>
-          <HelmetDatoCms seo={data.privacy.seoMetaTags} />
-          <h2>{data.privacy.title}</h2>
+          <HelmetDatoCms seo={data.terms.seoMetaTags} />
+          <h2>{data.terms.title}</h2>
           <Content
             dangerouslySetInnerHTML={{
-              __html: data.privacy.contentNode.childMarkdownRemark.html,
+              __html: data.terms.contentNode.childMarkdownRemark.html,
             }}
           />
         </Wrapper>
