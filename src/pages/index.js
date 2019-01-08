@@ -236,7 +236,7 @@ const IndexPage = () => (
         </Support>
 
         <Copyright>
-          <p>Oneapps &copy; 2016-2018</p>
+          <p>Oneapps &copy; 2016-2019</p>
           <p>
             <a href="/privacy">Privacy Policy</a>{` - `}<a href="/terms-of-use">Terms of Use</a>
           </p>
