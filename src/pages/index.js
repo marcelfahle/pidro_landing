@@ -238,7 +238,7 @@ const IndexPage = () => (
         <Copyright>
           <p>Oneapps &copy; 2016-2019</p>
           <p>
-            <a href="/privacy">Privacy Policy</a>{` - `}<a href="/terms-of-use">Terms of Use</a>
+            <a href="/privacy">Privacy Policy</a>{` - `}<a href="/terms-of-use">Terms of Use</a>{` - `}<a href="/in-app-purchases">In-App Purchases</a>
           </p>
         </Copyright>
       </Layout>
