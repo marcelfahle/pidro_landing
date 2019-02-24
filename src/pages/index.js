@@ -4,23 +4,11 @@ import ReactSwipe from 'react-swipe'
 import { HelmetDatoCms } from 'gatsby-source-datocms'
 import { StaticQuery, graphql } from 'gatsby'
 import Link, { withPrefix } from 'gatsby-link'
-import {
-  FacebookShareButton,
-  LinkedinShareButton,
-  TwitterShareButton,
-  WhatsappShareButton,
-  EmailShareButton,
-  FacebookIcon,
-  LinkedinIcon,
-  TwitterIcon,
-  WhatsappIcon,
-  EmailIcon,
-} from 'react-share'
 
 import Layout from '../components/layout'
+import phone from './../images/phone-mock.png'
 import appStoreLogo from './../images/badge-appstore.png'
 import playStoreLogo from './../images/badge-playstore.png'
-import phone from './../images/phone-mock.png'
 
 const Systems = styled.h2`
   color: white;
@@ -46,7 +34,6 @@ const Badges = styled.div`
     }
   }
 `
-
 const Swiper = styled.div`
   border: 2px solid #09afe6;
   border-radius: 6px;
@@ -65,38 +52,6 @@ const Swiper = styled.div`
       margin: 24px auto 0 auto;
     }
   }
-`
-
-const SocialButtons = styled.div`
-  display: block;
-  margin-bottom: 20px;
-  p {
-    text-align: center;
-    margin-bottom: 10px;
-  }
-`
-const ButtonList = styled.div`
-  display: table;
-  margin: 0 auto;
-  > div {
-    display: inline-block;
-    margin-left: 6px;
-    margin-right: 6px;
-  }
-`
-
-const Support = styled.div`
-  font-size: 1.1em;
-  margin-bottom: 20px;
-  text-align: center;
-`
-
-const Copyright = styled.div`
-  border-top: 1px solid #09afe6;
-  padding-top: 20px;
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto;
 `
 
 const IndexPage = () => (
@@ -173,74 +128,6 @@ const IndexPage = () => (
               data.home.screenshots.map(s => <img key={s.url} src={s.url} />)}
           </ReactSwipe>
         </Swiper>
-        <SocialButtons>
-          <p>Let's get Social:</p>
-          <ButtonList>
-            <FacebookShareButton
-              quote={data.social.facebookShareTitle}
-              hashtag={data.social.facebookShareHashtag}
-              url={data.social.sharingUrl}
-            >
-              <FacebookIcon size={32} round={true} />
-            </FacebookShareButton>
-            <TwitterShareButton
-              url={data.social.sharingUrl}
-              title={data.social.twitterTitle}
-              via={data.social.twitterVia}
-            >
-              <TwitterIcon size={32} round={true} />
-            </TwitterShareButton>
-            <WhatsappShareButton
-              url={data.social.sharingUrl}
-              title={data.social.whatsappTitle}
-            >
-              <WhatsappIcon size={32} round={true} />
-            </WhatsappShareButton>
-            <LinkedinShareButton
-              url={data.social.sharingUrl}
-              title={data.social.linkedinTitle}
-              description={data.social.linkedinDescription}
-            >
-              <LinkedinIcon size={32} round={true} />
-            </LinkedinShareButton>
-            <EmailShareButton
-              url={data.social.sharingUrl}
-              subject={data.social.eMailSubject}
-              body={data.social.eMailBody}
-            >
-              <EmailIcon size={32} round={true} />
-            </EmailShareButton>
-          </ButtonList>
-        </SocialButtons>
-
-        <Badges>
-          <ul>
-            <li>
-              <a href={data.home.appStoreUrl} target="_blank">
-                <img className="apple" src={appStoreLogo} />
-              </a>
-            </li>
-            <li>
-              <a href={data.home.playStoreUrl} target="_blank">
-                <img className="android" src={playStoreLogo} />
-              </a>
-            </li>
-          </ul>
-        </Badges>
-
-        <Support>
-          <p>
-            Technical Problems? We're here to help! <br />
-            <a href="mailto:support@pidro.net">Click here</a>
-          </p>
-        </Support>
-
-        <Copyright>
-          <p>Oneapps &copy; 2016-2019</p>
-          <p>
-            <a href="/privacy">Privacy Policy</a>{` - `}<a href="/terms-of-use">Terms of Use</a>{` - `}<a href="/in-app-purchases">In-App Purchases</a>
-          </p>
-        </Copyright>
       </Layout>
     )}
   />
