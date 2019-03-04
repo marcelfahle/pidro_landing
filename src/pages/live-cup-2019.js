@@ -11,18 +11,12 @@ import phone from './../images/phone-mock.png'
 import appStoreLogo from './../images/badge-appstore.png'
 import playStoreLogo from './../images/badge-playstore.png'
 
-const IndexPage = () => {
-  if (typeof window !== 'undefined') {
-    return (
-      <Layout>
-        <div>
-          <ReactTypeformEmbed url="https://pidro647320.typeform.com/to/NpcCTj" />
-        </div>
-      </Layout>
-    )
-  } else {
-    return null
-  }
-}
+const IndexPage = () => (
+  <Layout>
+    <div>
+      <ReactTypeformEmbed url="https://pidro647320.typeform.com/to/NpcCTj" />
+    </div>
+  </Layout>
+)
 
 export default IndexPage
