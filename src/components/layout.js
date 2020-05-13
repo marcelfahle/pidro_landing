@@ -242,7 +242,7 @@ const Layout = ({ children }) => (
         </Support>
 
         <Copyright>
-          <p>Oneapps &copy; 2016-2019</p>
+          <p>Oneapps &copy; 2016-{new Date().getFullYear()}</p>
           <p>
             <a href="/privacy">Privacy Policy</a>
             {` - `}
