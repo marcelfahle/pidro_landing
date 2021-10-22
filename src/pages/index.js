@@ -9,6 +9,7 @@ import Layout from '../components/layout'
 import phone from './../images/phone-mock.png'
 import appStoreLogo from './../images/badge-appstore.png'
 import playStoreLogo from './../images/badge-playstore.png'
+import './../components/devices.min.css'
 
 const Systems = styled.h2`
   color: white;
@@ -84,52 +85,75 @@ const IndexPage = () => (
         }
       }
     `}
-    render={data => (
-      <Layout>
-        <HelmetDatoCms seo={data.home.seoMetaTags} />
-        <Systems>
-          Pidro, the Multiplayer Card Game
-          <br />
-          for{' '}
-          <a href={data.home.appStoreUrl} target="_blank">
-            iPhone
-          </a>
-          ,{' '}
-          <a href={data.home.appStoreUrl} target="_blank">
-            iPad{' '}
-          </a>
-          and{' '}
-          <a href={data.home.playStoreUrl} target="_blank">
-            Android
-          </a>
-          .
-        </Systems>
-        <Badges>
-          <ul>
-            <li>
-              <a href={data.home.appStoreUrl} target="_blank">
-                <img className="apple" src={appStoreLogo} />
-              </a>
-            </li>
-            <li>
-              <a href={data.home.playStoreUrl} target="_blank">
-                <img className="android" src={playStoreLogo} />
-              </a>
-            </li>
-          </ul>
-        </Badges>
-        <Swiper>
-          <ReactSwipe
-            className="carousel"
-            swipeOptions={{ auto: 3000, continuous: true }}
-          >
-            {data &&
-              data.home.screenshots &&
-              data.home.screenshots.map(s => <img key={s.url} src={s.url} />)}
-          </ReactSwipe>
-        </Swiper>
-      </Layout>
-    )}
+    render={(data) => {
+      return (
+        <Layout>
+          <HelmetDatoCms seo={data.home.seoMetaTags} />
+          <Systems>
+            Pidro, the Multiplayer Card Game
+            <br />
+            for{' '}
+            <a href={data.home.appStoreUrl} target="_blank">
+              iPhone
+            </a>
+            ,{' '}
+            <a href={data.home.appStoreUrl} target="_blank">
+              iPad{' '}
+            </a>
+            and{' '}
+            <a href={data.home.playStoreUrl} target="_blank">
+              Android
+            </a>
+            .
+          </Systems>
+          <Badges>
+            <ul>
+              <li>
+                <a href={data.home.appStoreUrl} target="_blank">
+                  <img className="apple" src={appStoreLogo} />
+                </a>
+              </li>
+              <li>
+                <a href={data.home.playStoreUrl} target="_blank">
+                  <img className="android" src={playStoreLogo} />
+                </a>
+              </li>
+            </ul>
+          </Badges>
+          <div class="temp-wrapper temp-wrapper--wider ">
+            <div class="px px--ls">
+              <div class="px__body">
+                <div class="px__body__cut"></div>
+                <div class="px__body__speaker"></div>
+                <div class="px__body__sensor"></div>
+
+                <div class="px__body__mute"></div>
+                <div class="px__body__up"></div>
+                <div class="px__body__down"></div>
+                <div class="px__body__right"></div>
+              </div>
+
+              <div class="px__screen">
+                <div class="px__screen__">
+                  <div class="px__screen__frame">
+                    <ReactSwipe
+                      className="carousel"
+                      swipeOptions={{ auto: 3000, continuous: true }}
+                    >
+                      {data &&
+                        data.home.screenshots &&
+                        data.home.screenshots.map((s) => (
+                          <img key={s.url} src={s.url} />
+                        ))}
+                    </ReactSwipe>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Layout>
+      )
+    }}
   />
 )
 

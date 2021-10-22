@@ -159,11 +159,10 @@ const Layout = ({ children }) => (
         }
       }
     `}
-    render={data => (
+    render={(data) => (
       <SiteWrapper>
         <GlobalStyle />
         <Helmet
-          title={data.site.siteMetadata.title}
           meta={[
             {
               name: 'description',
@@ -177,7 +176,7 @@ const Layout = ({ children }) => (
           ]}
         />
         <HelmetDatoCms favicon={data.datoCmsSite.faviconMetaTags} />
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Header />
         <Content>{children}</Content>
 
         <SocialButtons>
